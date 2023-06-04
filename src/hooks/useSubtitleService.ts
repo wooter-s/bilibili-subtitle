@@ -82,6 +82,7 @@ const useSubtitleService = () => {
 
     window.addEventListener('message', listener)
 
+    // woo tag 取消监听, 在组件卸载时执行
     return () => {
       window.removeEventListener('message', listener)
     }

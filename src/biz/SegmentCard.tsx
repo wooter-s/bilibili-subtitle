@@ -5,13 +5,19 @@ import classNames from 'classnames'
 import {FaClipboardList} from 'react-icons/fa'
 import {PAGE_MAIN, PAGE_SETTINGS, SUMMARIZE_THRESHOLD, SUMMARIZE_TYPES} from '../const'
 import useTranslate from '../hooks/useTranslate'
-import {BsDashSquare, BsPlusSquare, CgFileDocument, GrOverview, RiFileCopy2Line} from 'react-icons/all'
 import toast from 'react-hot-toast'
 import {getLastTime, getSummaryStr, isSummaryEmpty, parseStrTimeToSeconds} from '../util/biz_util'
 import {useInViewport} from 'ahooks'
 import SegmentItem from './SegmentItem'
 import {stopPopFunc} from '../util/util'
 import useSubtitle from '../hooks/useSubtitle'
+import { RiFileCopy2Line } from 'react-icons/ri'
+import {
+  BsDashSquare,
+  BsPlusSquare,
+} from 'react-icons/bs'
+import { CgFileDocument } from 'react-icons/cg'
+import { GrOverview } from 'react-icons/gr'
 
 const SummarizeItemOverview = (props: {
   segment: Segment

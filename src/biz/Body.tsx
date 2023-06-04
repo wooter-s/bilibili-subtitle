@@ -10,14 +10,23 @@ import {
   setSegmentFold
 } from '../redux/envReducer'
 import {useAppDispatch, useAppSelector} from '../hooks/redux'
-import {AiOutlineAim, FaRegArrowAltCircleDown, IoWarning, MdExpand, RiFileCopy2Line, RiTranslate} from 'react-icons/all'
 import classNames from 'classnames'
 import toast from 'react-hot-toast'
 import SegmentCard from './SegmentCard'
 import {HEADER_HEIGHT, PAGE_SETTINGS, SUMMARIZE_ALL_THRESHOLD, SUMMARIZE_TYPES, TITLE_HEIGHT} from '../const'
-import {FaClipboardList} from 'react-icons/fa'
+import {
+  FaClipboardList,
+  FaRegArrowAltCircleDown,
+} from 'react-icons/fa'
 import useTranslate from '../hooks/useTranslate'
 import {getSummarize} from '../util/biz_util'
+import { AiOutlineAim } from 'react-icons/ai'
+import { MdExpand } from 'react-icons/md'
+import {
+  RiFileCopy2Line,
+  RiTranslate,
+} from 'react-icons/ri'
+import { IoWarning } from 'react-icons/io5'
 
 const Body = () => {
   const dispatch = useAppDispatch()
@@ -117,6 +126,19 @@ const Body = () => {
     }
   }, [curSummaryType, segments, title])
 
+  // 复制段落
+  const onCopySegment = useCallback(() => {
+    if (segments) {
+      const texts = segments.map((seg) => {
+        return seg.text
+      })
+
+      navigator.clipboard.writeText(texts.join('\n\n\n')).then(() => {
+        toast.success('复制成功')
+      }).catch(console.error)
+    }
+  }, [segments])
+
   // 自动滚动
   useEffect(() => {
     if (checkAutoScroll && curOffsetTop && autoScroll && !needScroll) {
@@ -175,6 +197,7 @@ const Body = () => {
         <div className='font-semibold text-accent'>💡<span className='underline underline-offset-4'>提示</span>💡</div>
         <div className='text-sm desc px-2'>可以尝试将<span className='text-amber-600 font-semibold'>概览</span>生成的内容粘贴到<span className='text-secondary/75 font-semibold'>视频评论</span>里，发布后看看有什么效果🥳</div>
         {(segments?.length??0) > 0 && <button className='mt-1.5 btn btn-xs btn-info' onClick={onCopy}>点击复制生成的{SUMMARIZE_TYPES[curSummaryType].name}<RiFileCopy2Line/></button>}
+        {(segments?.length??0) > 0 && <button className='mt-1.5 btn btn-xs btn-info' onClick={onCopySegment}>点击复制段落<RiFileCopy2Line/></button>}
       </div>
     </div>
   </div>

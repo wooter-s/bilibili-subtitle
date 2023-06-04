@@ -1,13 +1,5 @@
 import React, {MouseEvent, useCallback, useContext, useRef, useState} from 'react'
 import {useClickAway} from 'ahooks'
-import {
-  AiFillWechat,
-  BsFillChatDotsFill,
-  FiMoreVertical,
-  ImDownload3,
-  IoMdSettings,
-  RiFileCopy2Line
-} from 'react-icons/all'
 import Popover from '../components/Popover'
 import {Placement} from '@popperjs/core/lib/enums'
 import {useAppDispatch, useAppSelector} from '../hooks/redux'
@@ -18,6 +10,12 @@ import {formatSrtTime, formatTime, formatVttTime} from '../util/util'
 import {downloadText, openUrl} from '@kky002/kky-util'
 import toast from 'react-hot-toast'
 import {getSummarize} from '../util/biz_util'
+import { RiFileCopy2Line } from 'react-icons/ri'
+import { FiMoreVertical } from 'react-icons/fi'
+import { ImDownload3 } from 'react-icons/im'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+import { AiFillWechat } from 'react-icons/ai'
+import { IoMdSettings } from 'react-icons/io'
 
 interface Props {
   placement: Placement

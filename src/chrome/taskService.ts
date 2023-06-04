@@ -26,6 +26,8 @@ export const handleTask = async (task: Task) => {
 }
 
 export const initTaskService = () => {
+  // woo tag 定时处理任务
+  // 这里可以使用更好更好的调度算法
   // 处理任务: tasksMap
   setInterval(() => {
     for (const [_, task] of tasksMap) {
